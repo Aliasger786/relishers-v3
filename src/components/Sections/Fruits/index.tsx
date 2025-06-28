@@ -2,7 +2,7 @@ import { PrevNext as PrevNextButtons, Title } from ".."
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { MealItem } from "../../FoodItem/MealItem"
-
+import Container from "../../Container"
 import { FilterFood } from "../../../utils/filters"
 import { useState } from "react"
 ;
@@ -32,18 +32,11 @@ const Fruits = () => {
 
   return (
     <section className="w-full my-5">
-      <div className="w-full flex items-center justify-between">
-        <Title title="Our Hot Dishes" />
-        <br /><br /><br />
-      </div>
-      <Carousel itemClass="carousel-div" renderArrowsWhenDisabled={true} showDots={true} arrows={false} autoPlay={true} infinite={true} responsive={responsive}>
-        <MealItem />
-        <MealItem />
-        <MealItem />
-        <MealItem />
-        <MealItem />
-        <MealItem />
-      </Carousel>
+        <div className="w-full flex items-center justify-between">
+          <Title title="Our Hot Dishes" />
+          <PrevNextButtons onNext={() => setScrollValue(10000)} onPrev = {() => setScrollValue(-10000)} />
+        </div>
+        <Container className="bg-containerbg" scrollOffset = {scrollValue} items = {fruits} />
     </section>
   )
 }

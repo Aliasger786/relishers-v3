@@ -20,4 +20,4 @@ export const MealItem = () => {
       </div>
     </a>
   );
-}
+};

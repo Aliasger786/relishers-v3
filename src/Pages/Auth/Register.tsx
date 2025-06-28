@@ -12,12 +12,14 @@ import { EMAILSIGNUP, firebaseAddUser } from "../../Firebase";
 const Login = () => {
   const navigate = useNavigate();
   const [{ user }, dispatch] = useStateValue();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const EmailAuth = () => {
     if (!user) {
-      if (email.length > 0 && password.length > 0) {
+      if (name.length > 0 && phone.length > 0 && email.length > 0 && password.length > 0) {
         toast.promise(
           EMAILSIGNUP(email, password),
           {
@@ -27,7 +29,12 @@ const Login = () => {
           }
         ).then((userCredential) => {
           // Signed in
-          const user = userCredential.user.providerData[0];
+          const user = {
+            ...userCredential.user.providerData[0],
+            displayName: name,
+            phoneNumber: phone,
+            isAdmin: false
+          };
           firebaseAddUser(user);
           dispatch({
             type: "SET_USER",
@@ -37,7 +44,6 @@ const Login = () => {
           navigate("/");
         }
         ).catch((error) => {
-          // const errorCode = error.code;
           const errorMessage = error.message;
           toast.error(errorMessage, { autoClose: 15000 });
         }
@@ -65,7 +71,25 @@ const Login = () => {
               <div className="mb-6">
                 <input
                   type="text"
-                  className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
+                  placeholder="Full Name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-6">
+                <input
+                  type="text"
+                  className="form-control block w-full px-4 py-2 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
+                  placeholder="Phone Number"
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </div>
+
+              <div className="mb-6">
+                <input
+                  type="text"
+                  className="form-control block w-full px-4 py-2 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
                   placeholder="Email address"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -74,7 +98,7 @@ const Login = () => {
               <div className="mb-6">
                 <input
                   type="password"
-                  className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
+                  className="form-control block w-full px-4 py-2 text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
                   placeholder="Password"
                   onChange={(e) => setPassword(e.target.value)}
                 />

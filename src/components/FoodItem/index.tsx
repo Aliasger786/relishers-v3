@@ -1,14 +1,15 @@
 import { FoodItem } from "../../../types";
 import { motion } from "framer-motion";
 import Action from "./action";
+
 export const SingleFoodItem = ({
   item,
   col,
-  admin
+  admin,
 }: {
   item: FoodItem;
   col?: boolean;
-  admin?:boolean
+  admin?: boolean;
 }) => {
   const { id, title, price, calories, imageURL, description } = item;
 
@@ -19,26 +20,31 @@ export const SingleFoodItem = ({
         !col ? "w-[275px] min-w-[275px]" : "w-[320px] min-w-[320px]"
       } md:w-[300px] md:min-w-[300px] ${
         col ? "my-12" : "my-2 md:my-5"
-      } h-auto bg-cardOverlay rounded-lg p-2 px-3 backdrop-blur-lg hover:drop-shadow-sm cursor-pointer`}
+      } h-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-4 px-5 backdrop-blur-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer`}
     >
       <div className="w-full flex items-center justify-between">
         <motion.img
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 1.1 }}
-          className="w-40 h-40 md:w-48 md:h-40 -mt-8 object-contain cursor-pointer"
+          className="w-40 h-40 md:w-48 md:h-40 -mt-8 object-contain cursor-pointer transition-transform duration-300"
           alt={description}
           src={imageURL}
         />
-      <Action food={item} admin={admin} />
+        <Action food={item} admin={admin} />
       </div>
-      <div className="w-full flex items-end justify-end flex-col">
-        <p className="text-textColor font-semi-bold text-lg">{title}</p>
-        <p className="mt-1 text-sm text-gray-500">{description} </p>
-      {admin && (<p className="mt-1 text-sm text-gray-500">{calories} calories </p>)}
-        <div className="flex items-center justify-between gap-8 ">
-          <p className="text-base text-headingColor font-semibold">
+      <div className="w-full flex flex-col items-start mt-4">
+        <p className="text-headingColor font-bold text-lg">{title}</p>
+        <p className="mt-1 text-sm text-gray-600">{description}</p>
+        {admin && (
+          <p className="mt-1 text-sm text-gray-500">{calories} calories</p>
+        )}
+        <div className="flex items-center justify-between gap-8 mt-3 w-full">
+          <p className="text-lg text-headingColor font-semibold">
             <span className="text-sm text-red-600">$</span> {price}
           </p>
+          <button className="bg-red-500 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300">
+            View Details
+          </button>
         </div>
       </div>
     </motion.div>
