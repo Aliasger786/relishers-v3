@@ -23,6 +23,7 @@ const ProviderAuth = () => {
   const navigate = useNavigate();
 
   const AUTH = async ({ provider }: { provider: any }) => {
+    debugger
     if (!user) {
       toast
         .promise(AUTHPROVIDER(provider), {
@@ -31,6 +32,7 @@ const ProviderAuth = () => {
           error: "Error Signing in, Please try again🤗",
         })
         .then(({ refreshToken, userData }) => {
+          console.log(userData, "userData from auth provider");
           // Signed in
           const user = userData[0];
           // const userData = getUserData(user);
@@ -45,6 +47,7 @@ const ProviderAuth = () => {
         .catch((error) => {
           // const errorCode = error.code;
           const errorMessage = error.message;
+          console.log(errorMessage, "dyshfysdgfhsef vzfefgvf ")
           toast.error(errorMessage, { autoClose: 15000 });
         });
     }

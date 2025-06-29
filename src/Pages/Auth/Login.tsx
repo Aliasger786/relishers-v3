@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const EmailAuth = () => {
+    
     if (!user) {
       if (email.length > 0 && password.length > 0) {
         toast.promise(
