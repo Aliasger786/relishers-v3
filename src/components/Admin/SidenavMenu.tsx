@@ -102,28 +102,25 @@ const NavItem = ({
     setActivePage(title);
     setPageContent(pageContent);
   };
-  const [{users, foodItems}, dispatch] = useStateValue()
+  const [{ users, foodItems }, dispatch] = useStateValue();
   return (
     <motion.div
       whileTap={{ scale: 1.1 }}
       onClick={handleClick}
-      className={`flex items-center no-underline text-orange-50 hover:text-orange-100 p-3 rounded-md cursor-pointer hover:bg-orange-700 ${
-        activePage === title ? "bg-orange-700" : ""
+      className={`flex items-center no-underline text-blue-50 hover:text-blue-100 p-3 rounded-md cursor-pointer bg-blue-500 bg-opacity-80 hover:bg-blue-600 shadow-lg backdrop-blur-md transition-all duration-300 ${
+        activePage === title ? "bg-blue-800 bg-opacity-90 ring-2 ring-blue-300" : ""
       }`}
     >
-      <p className="font-bold text-xl">{svgIcon}</p>
-      <div className="flex items-center justify-center gap-10 font-bold pl-3">{title}
-        {
-          (title === "Menu" || title === "Users") && (
-            <div className=" w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center cursor-pointer">
+      <p className="font-bold text-xl drop-shadow-lg">{svgIcon}</p>
+      <div className="flex items-center justify-center gap-10 font-bold pl-3">
+        {title}
+        {(title === "Menu" || title === "Users") && (
+          <div className="w-5 h-5 rounded-full bg-blue-700 bg-opacity-80 flex items-center justify-center cursor-pointer shadow-md">
             <p className="text-sm text-white font-semibold">
-              {
-                title === "Menu"? foodItems.length:users.length
-              }
+              {title === "Menu" ? foodItems.length : users.length}
             </p>
           </div>
-          )
-        }
+        )}
       </div>
     </motion.div>
   );

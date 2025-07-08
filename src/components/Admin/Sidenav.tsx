@@ -15,7 +15,7 @@ const Sidenav = ({
   setPageContent: any;
 }) => {
   return (
-    <div className="flex md:flex-col w-full md:w-[20%] bg-orange-600 text-orange-50 px-3 py-4 justify-center items-center h-full">
+    <div className="flex md:flex-col w-full md:w-[20%] bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 bg-opacity-90 text-blue-50 px-3 py-4 justify-center items-center h-full shadow-2xl backdrop-blur-md">
       <SidenavHeader />
       <SidenavMenu
         activePage={activePage}
@@ -34,7 +34,7 @@ const SidenavHeader = () => {
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
-      whileHover = {{scale:1.1}}
+      whileHover={{ scale: 1.1 }}
       className=""
     >
       <Link
@@ -56,14 +56,14 @@ const SidenavFooter = () => {
   const navigate = useNavigate();
   return (
     <motion.div
-      whileHover = {{scale:1.1}}
+      whileHover={{ scale: 1.1 }}
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
       onClick={() => logout(user, dispatch, navigate)}
-      className="flex items-center justify-center mt-auto px-3 gap-3  text-orange-50 cursor-pointer opacity-70 hover:opacity-100"
+      className="flex items-center justify-center mt-auto px-3 gap-3 text-blue-50 cursor-pointer opacity-80 hover:opacity-100 bg-blue-700 rounded-lg shadow-lg backdrop-blur-md transition-all duration-300"
     >
-      <AiFillLock className="font-bold text-xl text-orange-50" />
+      <AiFillLock className="font-bold text-xl text-blue-50 drop-shadow-lg" />
       <div className="">Logout</div>
     </motion.div>
   );

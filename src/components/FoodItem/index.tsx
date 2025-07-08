@@ -42,9 +42,6 @@ export const SingleFoodItem = ({
           <p className="text-lg text-headingColor font-semibold">
             <span className="text-sm text-red-600">$</span> {price}
           </p>
-          <button className="bg-red-500 text-white text-sm px-4 py-2 rounded-lg hover:bg-red-600 transition-colors duration-300">
-            View Details
-          </button>
         </div>
       </div>
     </motion.div>

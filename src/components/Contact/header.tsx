@@ -1,4 +1,4 @@
-import { MdOutlineKeyboardBackspace, MdOutlineMessage } from "react-icons/md";
+import { MdCancel, MdOutlineKeyboardBackspace, MdOutlineMessage } from "react-icons/md";
 
 import { hideContactform } from "../../utils/functions";
 import { motion } from "framer-motion";
@@ -12,7 +12,7 @@ const ContactHeader = () => {
         whileTap={{ scale: 0.8 }}
         onClick={() => hideContactform(dispatch)}
       >
-        <MdOutlineKeyboardBackspace className="text-textColor text-2xl " />
+        <MdCancel className="text-textColor text-2xl " />
       </motion.div>
 
       <motion.div
@@ -20,7 +20,7 @@ const ContactHeader = () => {
         whileHover={{ scale: 0.9 }}
         className="flex items-center justify-center gap-x-2 px-2"
       >
-        <MdOutlineMessage className="text-xl cursor-pointer text-orange-600" />
+        <MdOutlineMessage className="text-xl cursor-pointer text-red-600" />
         <span>CONTACT US</span>
       </motion.div>
     </div>

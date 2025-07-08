@@ -24,7 +24,7 @@ const Menu = () => {
   return (
     <div className="w-full flex flex-col justify-center">
       {/* search bar */}
-      <div className="w-full flex justify-center p-2 bg-white mb-4 rounded-lg">
+      <div className="w-full flex justify-center p-2 bg-white mb-4 rounded-lg gap-2">
         <input
           className="w-full p-2 outline-none rounded-lg "
           type="text"
@@ -33,8 +33,16 @@ const Menu = () => {
           onChange={(e) => searchFood(e)}
         />
         {/* search button */}
-        <button className="flex items-center justify-center gap-3 text-orange-700 font-bold py-2 px-4 rounded-lg">
+        <button className="flex items-center justify-center gap-3 text-orange-700 font-bold py-2 px-4 rounded-lg"
+          onClick={filterFood}
+        >
           <FaSearch />
+        </button>
+        <button
+          className="flex items-center justify-center gap-3 text-gray-600 font-bold py-2 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+          onClick={() => { setQuery(""); setFilteredFoodItems(foodItems); }}
+        >
+          Clear
         </button>
       </div>
       <div className="w-full flex items-center justify-center gap-3 overflow-x-hidden flex-wrap">

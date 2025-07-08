@@ -14,7 +14,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const EmailAuth = () => {
-    
     if (!user) {
       if (email.length > 0 && password.length > 0) {
         toast.promise(
@@ -38,9 +37,7 @@ const Login = () => {
           // const errorCode = error.code;
           const errorMessage = error.message;
           toast.error(errorMessage, { autoClose: 15000 });
-        }
-        );
-
+        });
       } else {
         toast.warn("Please fill all the fields", { autoClose: 15000 });
       }

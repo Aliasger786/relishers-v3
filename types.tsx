@@ -48,6 +48,7 @@ export type User = {
   phoneNumber?: string;
   providerId: string;
   photoURL?: string;
+  isAdmin?: boolean;
 
 }
 export type FoodCategories = FoodCategory[];

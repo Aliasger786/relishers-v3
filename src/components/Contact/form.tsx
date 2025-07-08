@@ -23,7 +23,7 @@ const Form = () => {
       <div className="mb-6">
           <input
             type="text"
-            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
             placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -32,7 +32,7 @@ const Form = () => {
         <div className="mb-6">
           <input
             type="text"
-            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
             placeholder="Email ID"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -41,7 +41,7 @@ const Form = () => {
         <div className="mb-6">
           <input
             type="text"
-            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+            className="form-control block w-full px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
             placeholder="Subject"
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
@@ -49,7 +49,7 @@ const Form = () => {
         </div>
         <div className="mb-6">
           <textarea
-            className="form-control block w-full min-h-[25vh] px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-orange-600 focus:outline-none"
+            className="form-control block w-full min-h-[25vh] px-4 py-2  text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-red-600 focus:outline-none"
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -57,20 +57,20 @@ const Form = () => {
         </div>
         <button
           type="submit"
-          className="text-white bg-orange-600 hover:bg-orange-700 w-full focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-orange-600 dark:hover:bg-orange-700 focus:outline-none dark:focus:ring-orange-800 block"
+          className="text-white bg-red-600 hover:bg-red-700 w-full focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800 block"
             onClick={submitForm}
         >
           Send Message
         </button>
       </form>
       <p className="mb-2 cursor-pointer text-sm text-gray-500 dark:text-gray-400">
-        <a href="mailto:bentilshadrack72@gmail.com" className="hover:underline">
-          bentilshadrack72@gmail.com
+        <a href="mailto:relishers@gmail.com" className="hover:underline">
+          relishers@gmail.com
         </a>
       </p>
       <p className="text-sm cursor-pointer text-gray-500 dark:text-gray-400">
-        <a href="tel:+233556844331" className="hover:underline">
-          +233 55 684 4331
+        <a href="tel:+19876541201" className="hover:underline">
+          +1 987 654 1201
         </a>
       </p>
     </div>

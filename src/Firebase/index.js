@@ -10,7 +10,7 @@ import {
 
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { toast } from "react-toastify";
-import { shuffleItems } from "../utils/functions";
+import { isAdmin, shuffleItems } from "../utils/functions";
 
 export const firebaseUploadImage = (
   imageFile,
@@ -101,8 +101,12 @@ export const AUTHPROVIDER = async (provider) => {
     user: { refreshToken, providerData },
   } = await signInWithPopup(firebaseAuth, provider);
   // add provider data to user
-  await firebaseAddUser(providerData[0]);
-  let userData = await firebaseGetUser(providerData[0].uid);
+  const providerDataUpdated = {
+    ...providerData[0],
+    isAdmin: false
+  };
+  await firebaseAddUser(providerDataUpdated);
+  let userData = await firebaseGetUser(providerDataUpdated.uid);
   return { refreshToken, userData };
 };
 
@@ -133,11 +137,16 @@ export const firebaseFetchFoodItems = async () => {
 
 //  cart operation    
 export const firebaseAddToCart = async (data) => {
-  await setDoc(doc(firestore, "CartItems", `${data.id}`), data, {
-    merge: true,
-  });
+  try {
+    await setDoc(doc(firestore, "CartItems", `${data.id}`), data, {
+      merge: true,
+    });
+    toast.success("Item added to cart!", { autoClose: 2000 });
+  } catch (error) {
+    toast.error("Failed to add item to cart.");
+    throw error;
+  }
 };
-
 
 
 // Fetch All Cart Items  from Firestore
