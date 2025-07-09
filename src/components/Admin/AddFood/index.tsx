@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { AssetUploader, Loader } from "../..";
 import { BiCategory, BiFoodMenu } from "react-icons/bi";
 import {
@@ -11,6 +12,7 @@ import {
   firebaseFetchFoodItems,
   firebaseRemoveUploadedImage,
   firebaseSaveProduct,
+  firebaseUpdateProduct
 } from "../../../Firebase";
 
 import { Categories } from "../../../utils/categories";
@@ -18,11 +20,10 @@ import CategoriesSelector from "./CategoriesSelector";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
-import { useState } from "react";
 import { useStateValue } from "../../../context/StateProvider";
 import { fetchFoodData } from "../../../utils/functions";
 
-const AddFood = () => {
+const AddFood = ({ editFood }: { editFood?: any }) => {
   const [title, setTitle] = useState("");
   const [calories, setCalories] = useState("");
   const [price, setPrice] = useState("");
@@ -33,6 +34,27 @@ const AddFood = () => {
   const [description, setDescription] = useState("");
   const [loaderMessage, setLoadermessage] = useState("");
   const [{ foodItems }, dispatch] = useStateValue();
+
+  // Reset form fields when editFood changes
+  useEffect(() => {
+    if (editFood) {
+      setTitle(editFood.title || "");
+      setCalories(editFood.calories || "");
+      setPrice(editFood.price || "");
+      setImage(editFood.imageURL || null);
+      setCategory(editFood.category || "");
+      setQuantity(editFood.qty || "");
+      setDescription(editFood.description || "");
+    } else {
+      setTitle("");
+      setCalories("");
+      setPrice("");
+      setImage(null);
+      setCategory("");
+      setQuantity("");
+      setDescription("");
+    }
+  }, [editFood]);
 
   const deleteImage = () => {
     setLoadermessage("Removing Photo......");
@@ -48,7 +70,7 @@ const AddFood = () => {
         return;
       } else {
         const data = {
-          id: Date.now(),
+          id: editFood ? editFood.id : Date.now(),
           title: title,
           calories: calories,
           category: category,
@@ -57,16 +79,22 @@ const AddFood = () => {
           imageURL: image,
           qty: quantity,
         };
+        const savePromise = editFood
+          ? firebaseUpdateProduct(data)
+          : firebaseSaveProduct(data);
         toast
-          .promise(firebaseSaveProduct(data), {
-            pending: "Saving Product...",
-            success: "Product saved successfully",
-            error: "Error saving product, Please try again🤗",
+          .promise(savePromise, {
+            pending: editFood ? "Updating Product..." : "Saving Product...",
+            success: editFood ? "Product updated successfully" : "Product saved successfully",
+            error: editFood ? "Error updating product, Please try again🤗" : "Error saving product, Please try again🤗",
           })
           .then(() => {
             clearForm();
             setLoading(false);
             fetchFoodData(dispatch);
+            if (editFood) {
+              dispatch({ type: "TOGGLE_EDIT_FORM", showEditForm: false, editFood: null });
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -96,8 +124,6 @@ const AddFood = () => {
     }
     return value;
   };
-
-
 
   return (
     <div className="w-full h-fullflex items-center justify-center">
@@ -216,7 +242,7 @@ const AddFood = () => {
             className="ml-0 flex justify-center items-center gap-2 flex-row-reverse md:ml-auto w-full md:w-auto border-none outline-none rounded bg-orange-500 px-12 py-2 text-lg text-white"
             onClick={() => saveItem()}
           >
-            <MdOutlineDataSaverOn /> Save
+            <MdOutlineDataSaverOn /> {editFood ? "Update" : "Save"}
           </motion.button>
         </div>
       </div>

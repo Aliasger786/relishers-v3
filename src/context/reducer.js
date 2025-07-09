@@ -9,7 +9,8 @@ export const actionTypes = {
     UPDATE_USER: 'UPDATE_USER',
     SET_PAYMENT_METHOD: 'SET_PAYMENT_METHOD',
     UPDATE_CHECKOUT_DATA: 'UPDATE_CHECKOUT_DATA',
-    TOGGLE_CONTACT_FORM: 'TOGGLE_CONTACT_FORM'
+    TOGGLE_CONTACT_FORM: 'TOGGLE_CONTACT_FORM',
+    TOGGLE_EDIT_FORM: 'TOGGLE_EDIT_FORM'
 }
 
 const reducer = (state, action) => {
@@ -69,6 +70,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 showContactForm: action.showContactForm
+            };
+        case actionTypes.TOGGLE_EDIT_FORM:
+            return {
+                ...state,
+                showEditForm: action.showEditForm,
+                editFood: action.editFood || null // Set or clear the food item being edited
             };
         default:
             return state;

@@ -6,6 +6,8 @@ export const initialState = {
     user: sessionUser,
     foodItems: null,
     showCart: false,
+    showEditForm: false,
+    editFood: null, // Added to store the food item being edited
     showContactForm: false,
     cartItems: [],
     cartTotal: 0,

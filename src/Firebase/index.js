@@ -93,6 +93,12 @@ export const firebaseSaveProduct = async (data) => {
   });
 };
 
+export const firebaseUpdateProduct = async (data) => {
+  await setDoc(doc(firestore, "Food", `${data.id}`), data, {
+    merge: true,
+  });
+};
+
 
 // Authenticate user using PROVIDER
 export const AUTHPROVIDER = async (provider) => {

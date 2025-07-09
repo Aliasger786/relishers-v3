@@ -27,7 +27,7 @@ const Container = ({scrollOffset, col, items, className }: {scrollOffset:number,
       }`}
     >
       {items  && items.map((item: FoodItem) => (
-        <SingleFoodItem key={item.id} item = {item} col = {col} admin = {isAdmin(user)}/>
+        <SingleFoodItem key={item.id} item = {item} col = {col} />
       ))}
       {
         !items && (!col ? (<Loader progress = {"Fetching Food Items....."} />): (<NotFound text="Fetching Food Items..."  />))
