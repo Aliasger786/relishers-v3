@@ -36,6 +36,12 @@ const Users = () => {
         <button className="flex items-center justify-center gap-3 text-orange-700 font-bold py-2 px-4 rounded-lg">
           <FaSearch />
         </button>
+        <button
+          className="flex items-center justify-center gap-3 text-gray-600 font-bold py-2 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+          onClick={() => { setQuery(""); setFilteredUsers(users); }}
+        >
+          Clear
+        </button>
       </div>
 
       {/* dasboard statistics and counts */}

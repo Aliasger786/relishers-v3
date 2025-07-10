@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
+import { fetchUserCartData } from "../../utils/functions";
 import { EMAILSIGNIN } from "../../Firebase";
 
 const Login = () => {
@@ -31,6 +32,7 @@ const Login = () => {
             user: user,
           });
           localStorage.setItem("user", JSON.stringify(user));
+          fetchUserCartData(user, dispatch);
           navigate("/");
         }
         ).catch((error) => {

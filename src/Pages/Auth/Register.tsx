@@ -31,6 +31,7 @@ const Login = () => {
           // Signed in
           const user = {
             ...userCredential.user.providerData[0],
+            uid: userCredential.user.uid,
             displayName: name,
             phoneNumber: phone,
             isAdmin: false

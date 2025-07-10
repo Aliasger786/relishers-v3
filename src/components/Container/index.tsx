@@ -22,7 +22,7 @@ const Container = ({scrollOffset, col, items, className }: {scrollOffset:number,
       initial={{ opacity: 0, x: 200 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
-      className={`${className} w-full my-12 flex items-center ${(!items || col) && "justify-center"}   min-h-[200px] gap-4  px-2 ${
+      className={`bg-gradient-to-br from-yellow-50 to-orange-100 ${className} w-full my-12 flex items-center ${(!items || col) && "justify-center"}   min-h-[200px] gap-4  px-2 ${
         !col ? "overflow-x-scroll scrollbar-hidden scroll-smooth" : "overflow-x-hidden flex-wrap"
       }`}
     >

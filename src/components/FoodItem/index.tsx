@@ -16,11 +16,11 @@ export const SingleFoodItem = ({
   return (
     <motion.div
       whileTap={{ rotate: [0, -1, 1, -1, 0] }}
-      className={`${
+      className={`relative ${
         !col ? "w-[275px] min-w-[275px]" : "w-[320px] min-w-[320px]"
       } md:w-[300px] md:min-w-[300px] ${
         col ? "my-12" : "my-2 md:my-5"
-      } h-auto bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg p-4 px-5 backdrop-blur-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer`}
+      } h-auto bg-gradient-to-br from-white to-gray-200 rounded-lg p-4 px-5 backdrop-blur-lg hover:shadow-lg transition-shadow duration-300 cursor-pointer`}
     >
       <div className="w-full flex items-center justify-between">
         <motion.img

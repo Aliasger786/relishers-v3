@@ -22,7 +22,7 @@ const User = ({item}: {item:any}) => {
       </div>
       <motion.div whileTap={{scale:1.1}} className="gap-2 text-orange-600 text-sm p-1 px-3 bg-primary shadow-lg rounded-lg flex items-center justify-center mt-2 -mb-2">
         {
-          item?.providerId !== 'google.com' ? <MdEmail /> : <FcGoogle  />
+          item?.providerId === 'google.com' ? <FcGoogle  /> : <MdEmail />
         } <span>{item.providerId}</span>
       </motion.div>
       <div className="flex mt-4 space-x-3 lg:mt-6">

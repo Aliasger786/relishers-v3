@@ -2,7 +2,7 @@ import React from "react";
 import { useStateValue } from "../../context/StateProvider";
 import { motion } from "framer-motion";
 import { addToCart, deleteFood } from "../../utils/functions";
-import { MdAddShoppingCart, MdDeleteForever, MdClose } from "react-icons/md";
+import { MdAddShoppingCart, MdDeleteForever, MdClose, MdShoppingBasket } from "react-icons/md";
 import { BiEditAlt } from "react-icons/bi";
 import { FoodItem } from "../../../types";
 import { useNavigate } from "react-router-dom";
@@ -74,11 +74,13 @@ const Action = ({ food, admin }: { food: FoodItem; admin?: boolean }) => {
           <motion.div
             whileTap={{ scale: 1.1 }}
             whileHover={{ scale: 1.2 }}
-            className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-600 flex items-center justify-center cursor-pointer"
+            className="relative w-8 h-8 md:w-10 md:h-10 rounded-full bg-red-500 flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform duration-200 border-2 border-white"
             onClick={() => addToCart(cartItems, foodItems, user, food.id, dispatch)}
             title="Add to cart"
           >
-            <MdAddShoppingCart className="text-white md:text-xl" />
+            <MdShoppingBasket className="text-white md:text-2xl drop-shadow-lg" />
+            {/* Poping + icon */}
+            <span className="absolute -top-2 -right-2 bg-white text-red-600 text-xs font-bold rounded-full px-1.5 py-0.5 shadow-md border border-red-500 animate-bounce select-none">+</span>
           </motion.div>
         )}
       </div>

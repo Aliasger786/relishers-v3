@@ -126,8 +126,7 @@ export const EMAILSIGNUP = async (email, password) => {
 export const EMAILSIGNIN = async (email, password) => {
   const firebaseAuth = getAuth(app);
   const result = await signInWithEmailAndPassword(firebaseAuth, email, password)
-  let user = result.user.providerData[0];
-  return await firebaseGetUser(user.uid)
+  return await firebaseGetUser(result.user.uid)
 };
 
 
