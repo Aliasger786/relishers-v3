@@ -1,17 +1,20 @@
 import ContactHeader from "./header";
 import Form from "./form";
 import { motion } from "framer-motion";
-const Contact = () => {
+
+const Contact = ({ onClose }: { onClose?: () => void }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 200 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 200 }}
-      className={`w-full h-screen md:w-[350px] bg-white md:backdrop-blur-sm flex flex-col z-[101] drop-shadow-xl fixed top-0 left-0`}
-    >
-      <ContactHeader />
-      <Form />
-    </motion.div>
+    <div className="fixed inset-0 z-[101] flex items-center justify-center bg-black/40">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="w-full max-w-md bg-white md:backdrop-blur-sm flex flex-col drop-shadow-2xl rounded-2xl overflow-hidden"
+      >
+        <ContactHeader />
+        <Form onClose={onClose} />
+      </motion.div>
+    </div>
   );
 };
 
