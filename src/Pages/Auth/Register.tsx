@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import ProviderAuth, { ImageBox } from ".";
 import { toast } from "react-toastify";
 
-// import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
 import { EMAILSIGNUP, firebaseAddUser } from "../../Firebase";

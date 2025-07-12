@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useStateValue } from "../../context/StateProvider";
 import { fetchUserCartData } from "../../utils/functions";
-import { EMAILSIGNIN, /* ...other imports... */ } from "../../Firebase";
+import { EMAILSIGNIN } from "../../Firebase";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPassword = ({ onBack }: { onBack: () => void }) => {

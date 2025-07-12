@@ -5,6 +5,7 @@ import { AiFillLock } from "react-icons/ai";
 import { useStateValue } from "../../context/StateProvider";
 import { logout, ToggleAdminMode } from "../../utils/functions";
 import { motion } from "framer-motion";
+
 const Sidenav = ({
   activePage,
   setActivePage,
@@ -13,19 +14,17 @@ const Sidenav = ({
   activePage: string;
   setActivePage: any;
   setPageContent: any;
-}) => {
-  return (
-    <div className="flex md:flex-col w-full md:w-[20%] bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 bg-opacity-90 text-blue-50 px-3 py-4 justify-center items-center h-full shadow-2xl backdrop-blur-md">
-      <SidenavHeader />
-      <SidenavMenu
-        activePage={activePage}
-        setActivePage={setActivePage}
-        setPageContent={setPageContent}
-      />
-      <SidenavFooter />
-    </div>
-  );
-};
+}) => (
+  <div className="flex md:flex-col w-full md:w-[20%] bg-gradient-to-br from-blue-500 via-blue-600 to-blue-800 bg-opacity-90 text-blue-50 px-3 py-4 justify-center items-center h-full shadow-2xl backdrop-blur-md">
+    <SidenavHeader />
+    <SidenavMenu
+      activePage={activePage}
+      setActivePage={setActivePage}
+      setPageContent={setPageContent}
+    />
+    <SidenavFooter />
+  </div>
+);
 
 const SidenavHeader = () => {
   const [{ adminMode }, dispatch] = useStateValue();
@@ -35,11 +34,10 @@ const SidenavHeader = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 200 }}
       whileHover={{ scale: 1.1 }}
-      className=""
     >
       <Link
         onClick={() => ToggleAdminMode(dispatch, false)}
-        to={"/"}
+        to="/"
         className="flex items-center ml-1 pb-8 w-full justify-center"
       >
         <img src={Logo} alt="Logo" className="w-10 h-10" />
@@ -64,7 +62,7 @@ const SidenavFooter = () => {
       className="flex items-center justify-center mt-auto px-3 gap-3 text-blue-50 cursor-pointer opacity-80 hover:opacity-100 bg-blue-700 rounded-lg shadow-lg backdrop-blur-md transition-all duration-300"
     >
       <AiFillLock className="font-bold text-xl text-blue-50 drop-shadow-lg" />
-      <div className="">Logout</div>
+      <div>Logout</div>
     </motion.div>
   );
 };

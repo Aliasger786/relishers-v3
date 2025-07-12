@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
-
 import { MdDelete } from "react-icons/md";
 import { motion } from "framer-motion";
 import { cartItem } from "../../../types";
@@ -9,7 +8,7 @@ import { useStateValue } from "../../context/StateProvider";
 
 const CartItem = ({ item }: { item: cartItem }) => {
   const [{ foodItems, cartItems }, dispatch] = useStateValue();
-  const { id, fid, qty } = item;
+  const { fid, qty } = item;
   const foodItem = getFoodyById(foodItems, fid);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -29,12 +28,11 @@ const CartItem = ({ item }: { item: cartItem }) => {
           </p>
         </div>
       </div>
-      {/* Quantity Section (horizontal) */}
+      {/* Quantity Section */}
       <div className="group flex flex-row items-center justify-center gap-2 cursor-pointer bg-gray-100 rounded-lg px-2 py-1 shadow-md min-w-0 w-fit max-w-[120px]">
         <motion.div
-          className=""
           whileTap={{ scale: 0.75 }}
-          onClick={qty > 1 ? () => updateCartItemQty(cartItems, foodItems, item, dispatch, -1) : () => {}}
+          onClick={qty > 1 ? () => updateCartItemQty(cartItems, foodItems, item, dispatch, -1) : undefined}
         >
           <BiMinus className="text-gray-700 text-lg" />
         </motion.div>
@@ -42,7 +40,6 @@ const CartItem = ({ item }: { item: cartItem }) => {
           {qty}
         </span>
         <motion.div
-          className=""
           whileTap={{ scale: 0.75 }}
           onClick={() => updateCartItemQty(cartItems, foodItems, item, dispatch, 1)}
         >

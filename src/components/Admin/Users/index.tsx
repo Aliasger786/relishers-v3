@@ -5,22 +5,10 @@ import User from "./user";
 
 
 const Users = () => {
-  const [{ users }, dispatch] = useStateValue();
+  const [{ users }] = useStateValue();
   const [query, setQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState(users);
-  
-  const filterUsers = () => {
-      if(query.length === 0) {
-        setFilteredUsers(users);
-      }else{
-        const filter = users.filter((item:any) => item.displayName.toLowerCase().includes(query.toLowerCase()));
-        setFilteredUsers(filter);
-      }
-  }
-  const searchUsers = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setQuery(e.target.value);
-      filterUsers();
-  }
+  const filteredUsers = users.filter((item: any) => item.displayName.toLowerCase().includes(query.toLowerCase()));
+
   return (
     <div className="w-full justify-center flex flex-col">
       {/* search bar */}
@@ -30,7 +18,7 @@ const Users = () => {
           type="text"
           placeholder="Search user"
           value={query}
-          onChange={(e) => searchUsers(e)}
+          onChange={e => setQuery(e.target.value)}
         />
         {/* search button */}
         <button className="flex items-center justify-center gap-3 text-orange-700 font-bold py-2 px-4 rounded-lg">
@@ -38,7 +26,7 @@ const Users = () => {
         </button>
         <button
           className="flex items-center justify-center gap-3 text-gray-600 font-bold py-2 px-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
-          onClick={() => { setQuery(""); setFilteredUsers(users); }}
+          onClick={() => setQuery("")}
         >
           Clear
         </button>
@@ -57,5 +45,3 @@ const Users = () => {
 };
 
 export default Users;
-
-

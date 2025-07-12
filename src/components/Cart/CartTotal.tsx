@@ -1,8 +1,8 @@
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion';
 import { useStateValue } from '../../context/StateProvider';
 
-const CartTotal = ({checkoutState}: {checkoutState:any}) => {
-  const [{cartTotal}] = useStateValue();
+const CartTotal = ({ checkoutState }: { checkoutState: any }) => {
+  const [{ cartTotal }] = useStateValue();
   return (
     <div className="w-full mt-2 md:mt-0 flex-1 rounded-2xl bg-white shadow-2xl px-8 py-4 flex flex-col items-center justify-evenly transition-all duration-300">
       <div className="w-full flex items-center justify-between mb-2">
@@ -13,7 +13,7 @@ const CartTotal = ({checkoutState}: {checkoutState:any}) => {
       <div className="w-full flex items-center justify-between mb-2">
         <p className="text-gray-600 text-base md:text-lg font-medium">Delivery</p>
         <p className="text-gray-400 text-base md:text-lg">-</p>
-        <p className="text-gray-800 text-base md:text-lg font-semibold"><span className="text-sm text-red-600">$</span> {0.00}</p>
+        <p className="text-gray-800 text-base md:text-lg font-semibold"><span className="text-sm text-red-600">$</span> 0.00</p>
       </div>
       <div className="w-full border-b border-gray-200 my-2"></div>
       <div className="w-full flex items-center justify-between mb-4">
@@ -25,7 +25,7 @@ const CartTotal = ({checkoutState}: {checkoutState:any}) => {
         Checkout ${cartTotal}
       </motion.button>
     </div>
-  )
+  );
 }
 
-export default CartTotal
+export default CartTotal;

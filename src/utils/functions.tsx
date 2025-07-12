@@ -12,7 +12,6 @@ import {
   firebaseUpdateCartItem,
   firebaseUpdateUser,
 } from "../Firebase";
-
 import { MdShoppingBasket } from "react-icons/md";
 import { toast } from "react-toastify";
 
@@ -329,15 +328,17 @@ export const dispatchUsers = async (dispatch: any) => {
     })
     .catch((e: any) => {
       console.log(e);
-    }); 
-}
-export const getAllUser = async() => {
-   await firebaseGetAllUsers().then((users: any) => {
-    return users
-   }).catch((e:any) => {
-    console.log(e)
-   })
-}
+    });
+};
+export const getAllUser = async () => {
+  await firebaseGetAllUsers()
+    .then((users: any) => {
+      return users;
+    })
+    .catch((e: any) => {
+      console.log(e);
+    });
+};
 // delete food
 export const deleteFood = async (
   food: FoodItem,
@@ -347,14 +348,12 @@ export const deleteFood = async (
   await firebaseDeleteFood(food.id);
   // remove food from foodItems
   const foodIndex = foodItems.indexOf(food);
-  if(foodIndex !== -1)
-  {
-    foodItems.splice(foodIndex, 1)
+  if (foodIndex !== -1) {
+    foodItems.splice(foodIndex, 1);
   }
-  dispatch ({
+  dispatch({
     type: "SET_FOOD_ITEMS",
-    foodItems
-  })
+    foodItems,
+  });
   toast.success("Food deleted successfully");
 };
-
