@@ -1,3 +1,4 @@
+
 import { app, firestore, storage } from "../firebase.config";
 import {
   collection,
@@ -7,6 +8,7 @@ import {
   orderBy,
   query,
   setDoc,
+  where,
 } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
@@ -23,6 +25,12 @@ import {
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { toast } from "react-toastify";
 import { isAdmin, shuffleItems } from "../utils/functions";
+
+export const firebaseAddOrder = async (order) => {
+  // order: { cartItems, card, address, user, status, totalAmount }
+  const id = Date.now();
+  await setDoc(doc(firestore, "Orders", `${id}`), { ...order, id }, { merge: true });
+};
 
 export const firebaseUploadImage = (
   imageFile,
@@ -242,4 +250,51 @@ export const firebaseGetAllUsers = async () => {
 // delete food
 export const firebaseDeleteFood = async (id) => {
   await deleteDoc(doc(firestore, "Food", `${id}`));
+};
+
+export const firebaseAddAddress = async (address) => {
+  // address: { id, uid, street, apt, city, state, zipcode }
+  await setDoc(doc(firestore, "Addresses", `${address.id}`), address, {
+    merge: true,
+  });
+};
+
+export const firebaseFetchAddresses = async (uid) => {
+  const q = query(collection(firestore, "Addresses"), where("uid", "==", uid));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: data.id,
+      uid: data.uid,
+      street: data.street,
+      apt: data.apt,
+      city: data.city,
+      state: data.state,
+      zipcode: data.zipcode,
+    };
+  });
+};
+
+export const firebaseAddCard = async (card) => {
+  // card: { id, uid, cardNumber, name, expiry, cvv }
+  await setDoc(doc(firestore, "Cards", `${card.id}`), card, {
+    merge: true,
+  });
+};
+
+export const firebaseFetchCards = async (uid) => {
+  const q = query(collection(firestore, 'Cards'), where('uid', '==', uid));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => {
+    const data = doc.data();
+    return {
+      id: data.id,
+      uid: data.uid,
+      cardNumber: data.cardNumber,
+      name: data.name,
+      expiry: data.expiry,
+      cvv: data.cvv
+    };
+  });
 };

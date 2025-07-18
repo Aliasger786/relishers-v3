@@ -9,7 +9,7 @@ import {
   Services,
   Signup,
 } from "./Pages";
-import { Cart, Footer, Header, Modal } from "./components";
+import { Cart, Footer, Header } from "./components";
 import { Route, Routes } from "react-router-dom";
 import {
   calculateCartTotal,
@@ -23,6 +23,7 @@ import Contact from "./components/Contact";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useStateValue } from "./context/StateProvider";
+import CheckoutPage from "./Pages/Checkout";
 
 function App() {
   const [{ showCart, showContactForm, user, foodItems, cartItems, adminMode }, dispatch] = useStateValue();
@@ -45,7 +46,7 @@ function App() {
     <AnimatePresence exitBeforeEnter>
       <ToastContainer />
       <div className="w-screen h-auto min-h-[100vh] flex flex-col bg-primary">
-        {showCart && <Modal />}
+        {showCart && <Cart />}
         {showContactForm && <Contact />}
         {!isAdminMode && <Header />}
         <main
@@ -61,6 +62,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
           {!isAdminMode && <Footer />}
         </main>
