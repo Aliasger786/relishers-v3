@@ -1,10 +1,10 @@
-
 import { app, firestore, storage } from "../firebase.config";
 import {
   collection,
   deleteDoc,
   doc,
   getDocs,
+  getDoc,
   orderBy,
   query,
   setDoc,
@@ -110,6 +110,12 @@ export const firebaseRemoveUploadedImage = (
 export const silentRemoveUploadedImage = (ImageFile) => {
   const deleteRef = ref(storage, ImageFile);
   deleteObject(deleteRef).then(() => {});
+};
+
+export const fetchFoodItemById = async (fid) => {
+  if (!fid) return null;
+  const foodDoc = await getDoc(doc(firestore, 'Food', String(fid)));
+  return foodDoc.exists() ? foodDoc.data() : null;
 };
 
 export const firebaseSaveProduct = async (data) => {

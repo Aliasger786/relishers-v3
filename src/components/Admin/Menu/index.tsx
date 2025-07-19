@@ -29,8 +29,8 @@ const Menu = () => {
 
   if (showEditForm) {
     return (
-      <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-40">
-        <div className="relative z-[100001] bg-white rounded-lg shadow-lg p-6 min-w-[350px] max-w-full w-full sm:w-[400px] md:w-[500px]">
+      <div className="fixed inset-0 z-[99999] flex items-start justify-center bg-black bg-opacity-40">
+        <div className="relative z-[100001] bg-white rounded-lg shadow-lg p-6 mt-10 mb-6 min-w-[350px] max-w-full w-full sm:w-[400px] md:w-[500px] max-h-[90vh] overflow-y-auto">
           <AddFood editFood={editFood} />
         </div>
       </div>

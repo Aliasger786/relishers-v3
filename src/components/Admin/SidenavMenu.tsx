@@ -7,6 +7,7 @@ import AddFood from "./AddFood";
 import Dashboard from "./Dashboard";
 import Users from "./Users";
 import Menu from "./Menu";
+import Orders from "./Orders";
 import { useStateValue } from "../../context/StateProvider";
 
 const SidenavMenu = ({ activePage, setActivePage, setPageContent }: { activePage: string; setActivePage: any; setPageContent: any }) => (
@@ -19,7 +20,7 @@ const SidenavMenu = ({ activePage, setActivePage, setPageContent }: { activePage
     <NavItem activePage={activePage} svgIcon={<AiFillDashboard />} title="Dashboard" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<Dashboard />} />
     <NavItem activePage={activePage} svgIcon={<MdAddModerator />} title="Add Food" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<AddFood />} />
     <NavItem activePage={activePage} svgIcon={<MdRestaurantMenu />} title="Menu" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<Menu />} />
-    <NavItem activePage={activePage} svgIcon={<MdOutlineFavoriteBorder />} title="Orders" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<div className="w-full flex items-center justify-center">Orders</div>} />
+    <NavItem activePage={activePage} svgIcon={<MdOutlineFavoriteBorder />} title="Orders" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<Orders />} />
     <NavItem activePage={activePage} svgIcon={<FiUsers />} title="Users" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<Users />} />
     <NavItem activePage={activePage} svgIcon={<FaCogs />} title="Settings" setActivePage={setActivePage} setPageContent={setPageContent} pageContent={<div className="w-full flex items-center justify-center">Settings</div>} />
   </motion.nav>
@@ -40,10 +41,17 @@ const NavItem = ({ activePage, svgIcon, title, setActivePage, setPageContent, pa
       <p className="font-bold text-xl drop-shadow-lg">{svgIcon}</p>
       <div className="flex items-center justify-center gap-10 font-bold pl-3">
         {title}
-        {(title === "Menu" || title === "Users") && (
+        {title === "Menu" && (
           <div className="w-5 h-5 rounded-full bg-blue-700 bg-opacity-80 flex items-center justify-center cursor-pointer shadow-md">
             <p className="text-sm text-white font-semibold">
-              {title === "Menu" ? foodItems?.length : users?.length}
+              {foodItems?.length}
+            </p>
+          </div>
+        )}
+        {title === "Users" && (
+          <div className="w-5 h-5 rounded-full bg-blue-700 bg-opacity-80 flex items-center justify-center cursor-pointer shadow-md">
+            <p className="text-sm text-white font-semibold">
+              {users?.length}
             </p>
           </div>
         )}
